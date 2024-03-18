@@ -68,10 +68,27 @@ public class CaptureSceneManager : PocketDroidsSceneManager
       
     }
 
- 
+
     private void MoveToWorldScene()
     {
-        SceneTransitionManager.Instance.GoToScene(PocketDroidConstants.SCENE_WORLD, new List<GameObject>()); ;
-
+        // Load objects asynchronously
+        StartCoroutine(LoadObjects(() =>
+        {
+            // Objects are loaded, load scenario and move to world scene
+            SceneTransitionManager.Instance.GoToScene(PocketDroidConstants.SCENE_WORLD, new List<GameObject>());
+        }));
     }
+
+    private IEnumerator LoadObjects(Action onComplete)
+    {
+        // Load objects here asynchronously
+        // For example, you can use Unity's Resource.LoadAsync or AssetBundle.LoadAssetAsync
+
+        // For demonstration purposes, let's wait for 3 seconds
+        yield return new WaitForSeconds(3);
+
+        // Call the onComplete callback when objects are loaded
+        onComplete?.Invoke();
+    }
+
 }
