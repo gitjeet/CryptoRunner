@@ -1,0 +1,10 @@
+[package]
+name = "geotagrandnft"
+version = "0.0.0"
+
+[addresses]
+rangeonft = "_"
+
+[dependencies]
+AptosFramework = { local = "../../framework/aptos-framework" }
+AptosToken = { local = "../../framework/aptos-token" }

@@ -250,6 +250,7 @@ MonoBehaviour:
   startingDroids: 5
   minRange: 0.5
   maxRange: 1
+  apiUrl: https://aptos-api-8fm1.onrender.com/genrandloc
 --- !u!114 &8030626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7510,6 +7511,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5006512735084151213}
   - component: {fileID: 3166231814104526039}
+  - component: {fileID: 8296172669447959487}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -7517,6 +7519,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8296172669447959487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8296172669447959486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59affec3421accd4d9da7b097b9153c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 3166231814104526039}
 --- !u!4 &8471817553253092799
 Transform:
   m_ObjectHideFlags: 0

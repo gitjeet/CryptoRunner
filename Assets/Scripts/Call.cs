@@ -31,21 +31,30 @@ public class Call : MonoBehaviour
         // Simulate loading time
         yield return new WaitForSeconds(2f); // Adjust the time as needed
 
-        // Check and request permission
-        AndroidRuntimePermissions.Permission result = AndroidRuntimePermissions.RequestPermission("android.permission.ACTIVITY_RECOGNITION");
-        if (result == AndroidRuntimePermissions.Permission.Granted)
+        // Check and request permission for activity recognition
+        AndroidRuntimePermissions.Permission activityPermission = AndroidRuntimePermissions.RequestPermission("android.permission.ACTIVITY_RECOGNITION");
+        if (activityPermission == AndroidRuntimePermissions.Permission.Granted)
         {
             Debug.Log("We have permission to access the step counter");
-            
         }
         else
         {
-        
-            Debug.Log("Permission state: " + result); // No permission
+            Debug.Log("Permission state for activity recognition: " + activityPermission); // No permission
+        }
+
+        // Check and request permission for location access
+        AndroidRuntimePermissions.Permission locationPermission = AndroidRuntimePermissions.RequestPermission("android.permission.ACCESS_FINE_LOCATION");
+        if (locationPermission == AndroidRuntimePermissions.Permission.Granted)
+        {
+            Debug.Log("We have permission to access the location");
+        }
+        else
+        {
+            Debug.Log("Permission state for location: " + locationPermission); // No permission
         }
 
         // Unload the current scene
         SceneManager.LoadScene("World", LoadSceneMode.Single);
-
     }
-}   
+
+}

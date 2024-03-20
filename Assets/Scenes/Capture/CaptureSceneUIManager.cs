@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 public class CaptureSceneUIManager : MonoBehaviour
 {
@@ -60,7 +61,7 @@ public class CaptureSceneUIManager : MonoBehaviour
     {
         LoadingText.text = "Minting NFT";
         // URL of the API endpoint
-        string apiUrl = "https://opbnb-api-js.onrender.com/mintnft";
+        string apiUrl = "https://aptos-api-8fm1.onrender.com/mint";
 
         // Make the GET request
         UnityWebRequest request = UnityWebRequest.Get(apiUrl);
@@ -87,8 +88,29 @@ public class CaptureSceneUIManager : MonoBehaviour
     }
     private void MoveToWorldScene()
     {
-        SceneTransitionManager.Instance.GoToScene(PocketDroidConstants.SCENE_WORLD, new List<GameObject>()); ;
+        StartCoroutine(LoadWorldScene());
+    }
 
+    private IEnumerator LoadWorldScene()
+    {
+        // Display a loading screen or loading bar if needed
+        LoadingText.text = "Loading World Scene...";
+
+        // Asynchronously load the world scene
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(PocketDroidConstants.SCENE_WORLD);
+
+        // Wait until the scene is fully loaded
+        while (!asyncLoad.isDone)
+        {
+            // Update the loading progress if needed
+            // This could involve updating a loading bar
+            // loadingProgress = asyncLoad.progress;
+
+            yield return null;
+        }
+
+        // Everything is loaded, proceed with scene transition
+        Debug.Log("World Scene Loaded!");
     }
     private void HandleInProgress()
     {
