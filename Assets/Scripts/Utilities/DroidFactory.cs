@@ -54,7 +54,7 @@ public class DroidFactory : Singleton<DroidFactory>
        
         if (liveDroids.Count < 2)
         {
-            StartCoroutine(FetchRandomNumber((randomNumber) =>
+            StartCoroutine(FetchRandomLocation((randomNumber) =>
             {
                 float x = player.transform.position.x + randomNumber + Random.Range(0.0f, 30.0f);
                 float y = player.transform.position.y + 0.25f;
@@ -70,7 +70,7 @@ public class DroidFactory : Singleton<DroidFactory>
             liveDroids.Add(Instantiate(availableDroids[index], new Vector3(x, y, z), Quaternion.identity));
         }
     }
-    private IEnumerator FetchRandomNumber(System.Action<float> callback)
+    private IEnumerator FetchRandomLocation(System.Action<float> callback)
     {
         using (UnityWebRequest webRequest = UnityWebRequest.Get(apiUrl))
         {

@@ -74,7 +74,7 @@ module rangeonft::geotagrandnft{
     public fun get_geolocation(
         
     ): (u64)  {
-        // if this address doesn't have an Aptogotchi, throw error
+       
        let new_roll = randomness::u64_range(0, 6);
         new_roll
     }
@@ -93,7 +93,7 @@ module rangeonft::geotagrandnft{
         name,
         0,
         1,
-        // Mutate the properties to record the receiveer's address.
+
         vector<String>[string::utf8(b"given_to")],
         vector<vector<u8>>[bcs::to_bytes(&signer::address_of(receiver))],
         vector<String>[ string::utf8(b"address") ],
